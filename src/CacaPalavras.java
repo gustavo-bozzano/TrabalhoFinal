@@ -1,6 +1,5 @@
 public class CacaPalavras {
-    private void CacaPalavras() {
-
+    private CacaPalavras() {
     }
 
     public static void main(String[] args) throws Exception {
