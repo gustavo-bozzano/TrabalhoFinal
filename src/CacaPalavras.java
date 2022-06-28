@@ -8,10 +8,38 @@ public class CacaPalavras {
         int tamMatMapaL = 10, tamMatMapaC = 5;
         String palavras[][] = new String[tamMatPalavrasL][tamMatPalavrasC];
         char mapa[][] = new char[tamMatMapaL][tamMatMapaC];
-
+        int opcao = 0;
+        
         palavraEntrada(palavras);
         mapaEntrada(mapa);
         mapaPesquisa(palavras, mapa, tamMatMapaC, tamMatMapaL);
+        
+        do {
+            System.out.println("_____Menu: Caça Palavras _____");
+            System.out.println("1. listar palavras");
+            System.out.println("2. listar mapa");
+            System.out.println("3. listar respostas");
+            System.out.println("4. sair");
+            System.out.println(" __ opção:");
+            opcao = teclado.nextInt();
+            
+            switch (opcao) {
+                case 1:
+                //palavrasImprimir();
+                break;
+                case 2:
+                //mapaImprimir();
+                break;
+                case 3:    
+                    break;
+                case 4:
+                    
+                    break;
+                default:
+                    break;
+            }
+            
+        } while (opcao != 4);
 
         teclado.close();
     }
@@ -37,13 +65,20 @@ public class CacaPalavras {
         mapa[ 9][ 0]='V';  mapa[ 9][ 1]='E';  mapa[ 9][ 2]='T';  mapa[ 9][ 3]='O';  mapa[ 9][ 4]='R';
     }
 
-    private void mapaPesquisa(String palavras[][], char mapa[][], int tamMatMapaL, int tamMatMapaC) {
-        for (int i = 0; i < tamMatMapaL; i++) {
-            for (int j = 0; j < tamMatMapaC; j++) {
-                
-                
+    private void mapaPesquisa(String palavras[][], char mapa[][], int tamMatMapaC, int tamMatMapaL) {
+        for (int k = 0; k < palavras.length; k++) {
+            for (int i = 0; i < tamMatMapaL; i++) {
+                for (int j = 0; j < tamMatMapaC; j++) {
+                    if (palavras[k][0].charAt(0) == mapa[i][j] ) {
+                        if (palavras[k][0].charAt(1) {
+                            
+                        }
+                    }
+                }
             }
+            
         }
+        
     }
 
     public static void main(String[] args) {
