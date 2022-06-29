@@ -3,17 +3,15 @@ import java.util.Scanner;
 public class CacaPalavras {
     private CacaPalavras() {
         Scanner teclado = new Scanner(System.in);
-
-        int tamMatPalavrasL = 5, tamMatPalavrasC = 2;
-        int tamMatMapaL = 10, tamMatMapaC = 5;
+        int tamMatPalavrasL = 5, tamMatPalavrasC = 2, tamMatMapaL = 10, tamMatMapaC = 5;
         String palavras[][] = new String[tamMatPalavrasL][tamMatPalavrasC];
         char mapa[][] = new char[tamMatMapaL][tamMatMapaC];
         int opcao = 0;
-        
+
         palavraEntrada(palavras);
         mapaEntrada(mapa);
         mapaPesquisa(palavras, mapa, tamMatMapaC, tamMatMapaL);
-        
+
         do {
             System.out.println("_____Menu: Caça Palavras _____");
             System.out.println("1. listar palavras");
@@ -22,23 +20,24 @@ public class CacaPalavras {
             System.out.println("4. sair");
             System.out.println(" __ opção:");
             opcao = teclado.nextInt();
-            
+
             switch (opcao) {
                 case 1:
-                //palavrasImprimir();
-                break;
+                    palavrasImprimir(palavras);
+                    break;
                 case 2:
-                //mapaImprimir();
-                break;
-                case 3:    
+                    mapaImprimir(mapa, tamMatMapaC, tamMatMapaL);
+                    break;
+                case 3:
+                    palavrasRespostas(palavras);
                     break;
                 case 4:
-                    
                     break;
                 default:
+                    System.out.println("Opção ERRADA!...");
                     break;
             }
-            
+
         } while (opcao != 4);
 
         teclado.close();
@@ -66,19 +65,107 @@ public class CacaPalavras {
     }
 
     private void mapaPesquisa(String palavras[][], char mapa[][], int tamMatMapaC, int tamMatMapaL) {
+        int caracter = 0;
         for (int k = 0; k < palavras.length; k++) {
+            // esquerda - direita
             for (int i = 0; i < tamMatMapaL; i++) {
                 for (int j = 0; j < tamMatMapaC; j++) {
-                    if (palavras[k][0].charAt(0) == mapa[i][j] ) {
-                        if (palavras[k][0].charAt(1) {
-                            
+                    if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
+                        caracter++;
+                        if (caracter == palavras[k][0].length()) {
+                            palavras[k][1] = "[" + i + "," + (j - palavras[k][0].length() + 1) + "]";
+
+                            caracter = 0;
                         }
+                    } else {
+                        caracter = 0;
                     }
                 }
             }
-            
+            caracter = 0;
+
+            // direita - esquerda
+            for (int i = 0; i < tamMatMapaL; i++) {
+                for (int j = tamMatMapaC - 1; j >= 0; j--) {
+                    if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
+                        caracter++;
+                        if (caracter == palavras[k][0].length()) {
+                            palavras[k][1] = "[" + i + "," + (j + palavras[k][0].length() - 1) + "]";
+
+                            caracter = 0;
+                        }
+                    } else {
+                        caracter = 0;
+                    }
+                }
+            }
+            caracter = 0;
+
+            for (int j = 0; j < tamMatMapaC; j++) {
+                for (int i = tamMatMapaL - 1; i >= 0; i--) {
+                    if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
+                        caracter++;
+                        if (caracter == palavras[k][0].length()) {
+                            palavras[k][1] = "[" + (i + palavras[k][0].length() - 1) + "," + j + "]";
+
+                            caracter = 0;
+                        }
+                    } else {
+                        caracter = 0;
+                    }
+                }
+            }
+            caracter = 0;
+
+            for (int j = 0; j < tamMatMapaC; j++) {
+                for (int i = 0; i < tamMatMapaL; i++) {
+                    if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
+                        caracter++;
+                        if (caracter == palavras[k][0].length()) {
+                            palavras[k][1] = "[" + (i - palavras[k][0].length() + 1) + "," + j
+                                    + "]";
+
+                            caracter = 0;
+                        }
+                    } else {
+                        caracter = 0;
+                    }
+                }
+            }
         }
-        
+    }
+
+    private void palavrasImprimir(String palavras[][]) {
+        for (int i = 0; i < palavras.length; i++) {
+            System.out.println(palavras[i][0]);
+        }
+    }
+
+    private void palavrasRespostas(String palavras[][]) {
+        for (int i = 0; i < palavras.length; i++) {
+            String achou = palavras[i][1];
+            if (achou == null) {
+                System.out.println("Palavra NÃO encontrada " + palavras[i][0]);
+            } else {
+                System.out.println(palavras[i][1] + " - " + palavras[i][0]);
+            }
+        }
+    }
+
+    private void mapaImprimir(char mapa[][], int tamMatMapaC, int tamMatMapaL) {
+        for (int i = 0; i < tamMatMapaL; i++) {
+            System.out.println();
+            System.out.println("---------------------");
+            for (int j = 0; j < tamMatMapaC; j++) {
+                if (j == 0) {
+                    System.out.print("| ");
+                }
+                System.out.print(mapa[i][j] + " | ");
+            }
+        }
+        System.out.println();
+        System.out.println("---------------------");
+        System.out.println();
     }
 
     public static void main(String[] args) {
