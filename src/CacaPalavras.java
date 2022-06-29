@@ -101,6 +101,7 @@ public class CacaPalavras {
             }
             caracter = 0;
 
+            //baixo - cima
             for (int j = 0; j < tamMatMapaC; j++) {
                 for (int i = tamMatMapaL - 1; i >= 0; i--) {
                     if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
@@ -117,6 +118,7 @@ public class CacaPalavras {
             }
             caracter = 0;
 
+            //cima - baixo
             for (int j = 0; j < tamMatMapaC; j++) {
                 for (int i = 0; i < tamMatMapaL; i++) {
                     if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
