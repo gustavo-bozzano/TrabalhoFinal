@@ -65,71 +65,64 @@ public class CacaPalavras {
     }
 
     private void mapaPesquisa(String palavras[][], char mapa[][], int tamMatMapaC, int tamMatMapaL) {
-        int caracter = 0;
+        int qtdCaracter = 0;
         for (int k = 0; k < palavras.length; k++) {
             // esquerda - direita
             for (int i = 0; i < tamMatMapaL; i++) {
                 for (int j = 0; j < tamMatMapaC; j++) {
-                    if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
-                        caracter++;
-                        if (caracter == palavras[k][0].length()) {
+                    if (mapa[i][j] == palavras[k][0].charAt(qtdCaracter)) {
+                        qtdCaracter++;
+                        if (qtdCaracter == palavras[k][0].length()) {
                             palavras[k][1] = "[" + i + "," + (j - palavras[k][0].length() + 1) + "]";
-
-                            caracter = 0;
+                            qtdCaracter = 0;
                         }
-                    } else {
-                        caracter = 0;
+                    }   else {
+                        qtdCaracter = 0;
                     }
                 }
             }
-            caracter = 0;
 
             // direita - esquerda
             for (int i = 0; i < tamMatMapaL; i++) {
                 for (int j = tamMatMapaC - 1; j >= 0; j--) {
-                    if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
-                        caracter++;
-                        if (caracter == palavras[k][0].length()) {
+                    if (mapa[i][j] == palavras[k][0].charAt(qtdCaracter)) {
+                        qtdCaracter++;
+                        if (qtdCaracter == palavras[k][0].length()) {
                             palavras[k][1] = "[" + i + "," + (j + palavras[k][0].length() - 1) + "]";
-
-                            caracter = 0;
+                            qtdCaracter = 0;
                         }
-                    } else {
-                        caracter = 0;
+                    }   else {
+                        qtdCaracter = 0;
                     }
                 }
             }
-            caracter = 0;
 
             //baixo - cima
             for (int j = 0; j < tamMatMapaC; j++) {
                 for (int i = tamMatMapaL - 1; i >= 0; i--) {
-                    if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
-                        caracter++;
-                        if (caracter == palavras[k][0].length()) {
+                    if (mapa[i][j] == palavras[k][0].charAt(qtdCaracter)) {
+                        qtdCaracter++;
+                        if (qtdCaracter == palavras[k][0].length()) {
                             palavras[k][1] = "[" + (i + palavras[k][0].length() - 1) + "," + j + "]";
-
-                            caracter = 0;
+                            qtdCaracter = 0;
                         }
-                    } else {
-                        caracter = 0;
+                    }   else {
+                        qtdCaracter = 0;
                     }
                 }
             }
-            caracter = 0;
 
             //cima - baixo
             for (int j = 0; j < tamMatMapaC; j++) {
                 for (int i = 0; i < tamMatMapaL; i++) {
-                    if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
-                        caracter++;
-                        if (caracter == palavras[k][0].length()) {
+                    if (mapa[i][j] == palavras[k][0].charAt(qtdCaracter)) {
+                        qtdCaracter++;
+                        if (qtdCaracter == palavras[k][0].length()) {
                             palavras[k][1] = "[" + (i - palavras[k][0].length() + 1) + "," + j + "]";
-
-                            caracter = 0;
+                            qtdCaracter = 0;
                         }
-                    } else {
-                        caracter = 0;
+                    }   else {
+                        qtdCaracter = 0;
                     }
                 }
             }
