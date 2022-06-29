@@ -124,8 +124,7 @@ public class CacaPalavras {
                     if (mapa[i][j] == palavras[k][0].charAt(caracter)) {
                         caracter++;
                         if (caracter == palavras[k][0].length()) {
-                            palavras[k][1] = "[" + (i - palavras[k][0].length() + 1) + "," + j
-                                    + "]";
+                            palavras[k][1] = "[" + (i - palavras[k][0].length() + 1) + "," + j + "]";
 
                             caracter = 0;
                         }
